@@ -1,7 +1,19 @@
-from calc_azimuth import calc_azimuth
 from calc_offsets import calc_offsets
+from centersToArray import centersToArray
 from config import RX1
+from splitByRoutes import splitByRoutes
 
+centers_path = 'E:\\ГЕОДЕЗИЯ\\АЭРОФОТОСЪЕМКА\\Селитренное_2022\\010822\\avp1\\Селитренное_010822_центры_МСК30-1_1.txt'
+telemetry_path = 'A:\\AFS_2022\\Селитренное\\1\\photo\\rgb\\2022_08_01_SonyRX1RM2_g201b20445_f001_telemetry.txt'
+
+centers = centersToArray(centers_path, ';', ['name', 'nord', 'east', 'elev', 'time', 'rmsxy', 'rmsh'], 0)
+telemetry = centersToArray(telemetry_path, '\t', ['name', 'nord', 'east', 'elevBaro', 'roll', 'pitch', 'yaw', 'time', 'elevGPS'], 6)
+
+routes = splitByRoutes(centers)
+print(routes)
+
+
+"""
 with open('photo_centers_RX1.txt', 'r') as source, open('photo_centers_RX1_offsets.txt', 'w') as result:
     
     points = []
@@ -36,3 +48,4 @@ with open('photo_centers_RX1.txt', 'r') as source, open('photo_centers_RX1_offse
         p = calc_offsets(point, RX1['X'], RX1['Y'], RX1['Z'])
         result.write(str(p['name']) + '\t' + str(p['nord']) + '\t' + str(p['east']) + '\t' + str(p['elev']) + '\t' + str(p['stdn']) + '\t' + str(p['stde']) + '\t' + str(p['stdh']) + '\n')
     
+"""
