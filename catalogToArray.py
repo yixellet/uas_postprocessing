@@ -1,4 +1,4 @@
-def centersToArray(file, delimiter: str, structure, startWith: int):
+def catalogToArray(file, delimiter: str, structure, startWith: int):
     """Конвертирует файл в список словарей"""
     with open(file, 'r') as catalogue:
         points = []
@@ -17,7 +17,7 @@ def centersToArray(file, delimiter: str, structure, startWith: int):
     return points
 
 if __name__ == '__main__':
-    ar = centersToArray('E:\\ГЕОДЕЗИЯ\\АЭРОФОТОСЪЕМКА\\Селитренное_2022\\010822\\avp1\\Селитренное_010822_центры_МСК30-1_1.txt', 
+    ar = catalogToArray('E:\\ГЕОДЕЗИЯ\\АЭРОФОТОСЪЕМКА\\Селитренное_2022\\010822\\avp1\\Селитренное_010822_центры_МСК30-1_1.txt', 
         ';', 
         ['name', 'nord', 'east', 'elev', 'time', 'rmsxy', 'rmsh'])
     print(ar)

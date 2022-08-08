@@ -101,7 +101,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="calculateButton">
+  <widget class="QPushButton" name="startButton">
    <property name="geometry">
     <rect>
      <x>550</x>
