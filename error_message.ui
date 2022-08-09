@@ -10,8 +10,29 @@
     <height>150</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>350</width>
+    <height>150</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>350</width>
+    <height>150</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
+  </property>
+  <property name="modal">
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
@@ -26,7 +47,7 @@
     <item>
      <widget class="QLabel" name="label">
       <property name="text">
-       <string>Число снимков в файлах не совпадает</string>
+       <string>Число снимков в файлах не совпадает.</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
