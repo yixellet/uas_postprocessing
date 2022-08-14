@@ -29,6 +29,7 @@ class MainWindow(QDialog):
     def browseTelemetry(self):
         self.telemetryFilename = QFileDialog.getOpenFileName(self, 
             'Выберите файл телеметрии', '/', 'Текстовые файлы (*.txt)')
+        print(self.telemetryFilename)
         self.telemetryFilePath.setText(self.telemetryFilename[0])
     
     def browseCenters(self):
@@ -39,7 +40,6 @@ class MainWindow(QDialog):
         self.centersFilePath.setText(self.centersFilename[0])
     
     def checked(self):
-        print(self.checkBox.isChecked())
         if self.checkBox.isChecked():
             self.sourceCRSComboBox.setEnabled(True)
             self.targetCRSComboBox.setEnabled(True)
@@ -58,13 +58,14 @@ class MainWindow(QDialog):
             for i in range(len(centers)):
                 telemetry[i]['nord'] = centers[i]['nord']
                 telemetry[i]['east'] = centers[i]['east']
-                telemetry[i]['elevGPS'] = centers[i]['elev']
+                telemetry[i]['elev'] = centers[i]['elev']
                 rms = splitRMS(centers[i]['rmsxy'])
                 telemetry[i]['rmsx'] = rms
                 telemetry[i]['rmsy'] = rms
                 telemetry[i]['rmsh'] = centers[i]['rmsh']
                 telemetry[i]['yaw'] = telemetry[i]['yaw']
                 telemetry[i].pop('elevBaro')
+                telemetry[i].pop('elevGPS')
                 offCoords = calc_offsets(telemetry[i], offsets[str(self.cameraComboBox.currentText())])
                 if self.checkBox.isChecked():
                     transformedCoords = transformCoord(offCoords[1], offCoords[0], self.sourceCRSComboBox.currentText(), self.targetCRSComboBox.currentText())
@@ -73,7 +74,7 @@ class MainWindow(QDialog):
                 else:
                     telemetry[i]['nord'] = offCoords[0]
                     telemetry[i]['east'] = offCoords[1]
-                telemetry[i]['elevGPS'] = offCoords[2]
+                telemetry[i]['elev'] = offCoords[2]
         else:
             print('Количество снимков в файлах не совпадает')
             self.errorMessage = ErrorMessage()

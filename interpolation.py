@@ -17,9 +17,13 @@ def interpolation(prevPoint, nextPoint, currentTime):
     nextTimeNormal = normalizeDatetime(nextPoint['time'])
     deltaNordCommon = prevPoint['nord'] - nextPoint['nord']
     deltaEastCommon = prevPoint['east'] - nextPoint['east']
+    deltaElevCommon = prevPoint['elev'] - nextPoint['elev']
     deltaTimeCommon = timedelta(prevTimeNormal, nextTimeNormal)
     deltaTimePrev = timedelta(prevTimeNormal, currentTimeNormal)
     deltaNordPrev = deltaTimePrev * deltaNordCommon / deltaTimeCommon
     deltaEastPrev = deltaTimePrev * deltaEastCommon / deltaTimeCommon
-
+    deltaElevPrev = deltaTimePrev * deltaElevCommon / deltaTimeCommon
+    currentPoint = (prevPoint['nord'] + deltaNordPrev,
+                    prevPoint['east'] + deltaEastPrev,
+                    prevPoint['elev'] + deltaElevPrev)
     return currentPoint

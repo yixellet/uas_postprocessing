@@ -10,6 +10,6 @@ def calc_offsets(point, offsets):
               if offsets['X'] < 0 else yaw + 90))
     nord = round(point['nord'] + dnord_x + dnord_y, 3)
     east = round(point['east'] + deast_x + deast_y, 3)
-    elev = round(point['elevGPS'] + offsets['Z'], 3)
+    elev = round(point['elev'] + offsets['Z'], 3)
 
     return (nord, east, elev)
